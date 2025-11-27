@@ -1,0 +1,330 @@
+@import "tailwindcss";
+
+:root {
+  --terminal-bg: #1a1a1a;
+  --terminal-fg: #e5e5e5;
+  --terminal-green: #00ff41;
+  --terminal-blue: #4a9eff;
+  --terminal-yellow: #ffff00;
+  --terminal-cyan: #00ffff;
+  --terminal-red: #ff4444;
+  --terminal-border: #333333;
+}
+
+@theme inline {
+  --color-background: var(--terminal-bg);
+  --color-foreground: var(--terminal-fg);
+  --color-primary: var(--terminal-green);
+  --color-secondary: var(--terminal-blue);
+  --color-accent: var(--terminal-cyan);
+  --color-warning: var(--terminal-yellow);
+  --color-error: var(--terminal-red);
+  --color-border: var(--terminal-border);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--terminal-bg);
+  color: var(--terminal-fg);
+  font-family: var(--font-geist-mono), 'Courier New', monospace;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Terminal text effects */
+.terminal-text {
+  color: var(--terminal-fg);
+  text-shadow: 0 0 10px rgba(229, 229, 229, 0.3);
+}
+
+.terminal-green {
+  color: var(--terminal-green);
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.terminal-blue {
+  color: var(--terminal-blue);
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+}
+
+.terminal-cyan {
+  color: var(--terminal-cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.terminal-yellow {
+  color: var(--terminal-yellow);
+  text-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--terminal-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-border);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Selection */
+::selection {
+  background: var(--terminal-green);
+  color: var(--terminal-bg);
+}
+
+/* Focus */
+*:focus-visible {
+  outline: 2px solid var(--terminal-green);
+  outline-offset: 2px;
+}
+
+/* Terminal window effects */
+.terminal-window {
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.terminal-header {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 11px 11px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.system-variant .terminal-header {
+  background: rgba(45, 32, 81, 0.8);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.github-variant .terminal-header {
+  background: rgba(15, 35, 41, 0.8);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-button.close { background: #ff5555; }
+.terminal-button.minimize { background: #ffff55; }
+.terminal-button.maximize { background: #55ff55; }
+
+/* Cursor */
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Premium CRT Effects */
+.crt-screen {
+  position: relative;
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.crt-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 65, 0.03) 0px,
+      rgba(0, 255, 65, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  z-index: 1;
+  animation: scanlines 0.1s linear infinite;
+}
+
+.crt-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 50%,
+      rgba(0, 20, 0, 0.1) 100%
+    );
+  z-index: 1;
+  animation: flicker 0.15s infinite linear alternate;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(2px); }
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+/* Enhanced Terminal Window with CRT glow */
+.premium-terminal {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 12px;
+  box-shadow:
+    0 0 30px rgba(59, 130, 246, 0.15),
+    0 8px 50px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  position: relative;
+  z-index: 2;
+}
+
+/* System Terminal Variant */
+.premium-terminal.system-variant {
+  background: rgba(20, 14, 46, 0.95);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.15),
+    0 8px 50px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* GitHub Terminal Variant */
+.premium-terminal.github-variant {
+  background: rgba(6, 20, 25, 0.95);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow:
+    0 0 30px rgba(34, 197, 94, 0.15),
+    0 8px 50px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.premium-terminal::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg,
+    transparent,
+    rgba(0, 255, 65, 0.1),
+    transparent,
+    rgba(0, 255, 65, 0.1)
+  );
+  border-radius: 10px;
+  z-index: -1;
+  animation: borderGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes borderGlow {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.8; }
+}
+
+/* Enhanced text effects */
+.terminal-text-glow {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor;
+}
+
+.terminal-green-glow {
+  color: var(--terminal-green);
+  text-shadow:
+    0 0 5px var(--terminal-green),
+    0 0 10px var(--terminal-green),
+    0 0 15px var(--terminal-green),
+    0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+.terminal-blue-glow {
+  color: var(--terminal-blue);
+  text-shadow:
+    0 0 5px var(--terminal-blue),
+    0 0 10px var(--terminal-blue),
+    0 0 15px var(--terminal-blue);
+}
+
+/* Boot sequence effects */
+.boot-text {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: pre;
+}
+
+.boot-fade-in {
+  animation: bootFadeIn 0.1s ease-in forwards;
+}
+
+@keyframes bootFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Matrix rain effect (very subtle) */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.02;
+  background: transparent;
+}
+
+/* Typing sound effect visual */
+.key-flash {
+  animation: keyFlash 0.1s ease-out;
+}
+
+@keyframes keyFlash {
+  0% { background: rgba(0, 255, 65, 0.1); }
+  100% { background: transparent; }
+}
