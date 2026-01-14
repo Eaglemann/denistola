@@ -11,7 +11,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Denis Tola - Software Engineer",
-  description: "Software engineer based in Berlin, Germany.",
+  description: "Software engineer building full stack scalable cloud and data systems. Focused on reliability, performance, and production infrastructure.",
 };
 
 export default function RootLayout({
