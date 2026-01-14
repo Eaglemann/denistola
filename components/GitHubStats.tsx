@@ -30,54 +30,53 @@ export default function GitHubStats() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // For demo purposes, using mock data. In production, you'd use real API calls
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
         const mockUser: GitHubUser = {
           login: "denistola",
           public_repos: 34,
-          followers: 6,
-          following: 6,
+          followers: 5,
+          following: 8,
           created_at: "2014-09-23T00:00:00Z",
         };
 
         const mockRepos: Repository[] = [
           {
             id: 1,
-            name: "Tagesschau-Crawler-Flask",
+            name: "Time-Travel-Crypto-Trading-Engine",
             description:
-              "This is a web scraping and article versioning application ",
-            html_url: "https://github.com/Eaglemann/Tagesschau-Crawler-Flask",
-            stargazers_count: 0,
+              "A platform that ingests live crypto trades and allows you to revert the database to any second in the past to backtest strategies, and serves live signals.",
+            html_url: "https://github.com/Eaglemann/Time-Travel-Crypto-Trading-Engine",
+            stargazers_count: 1,
             forks_count: 0,
             watchers_count: 0,
             language: "Python",
-            updated_at: "2024-01-10T00:00:00Z",
+            updated_at: "2026-01-01T00:00:00Z",
           },
           {
             id: 2,
-            name: "Minimal Payment System",
+            name: "Git-Message-AI-Commit ",
             description:
-              "CRUD payment system with React frontend and Django backend",
+              "A CLI tool that uses a local Ollama instance to generate Conventional Commits messages from your staged changes.",
             html_url:
-              "https://github.com/Eaglemann/Minimal-Payment-System-Django-React",
-            stargazers_count: 0,
+              "https://github.com/Eaglemann/Git-Message-AI-Commit ",
+            stargazers_count: 1,
             forks_count: 0,
             watchers_count: 0,
-            language: "Python, JavaScript",
+            language: "Typescript",
             updated_at: "2024-01-08T00:00:00Z",
           },
           {
             id: 3,
-            name: "Enterprise Resource Planning System",
-            description: "ERP build with Java Swing and Oracle Database.",
+            name: "Schema-Sense-CSVtoSQL",
+            description: "Instantly transform raw CSV data into production-ready MySQL schemas with AI-powered insights.",
             html_url:
-              "https://github.com/Eaglemann/Enterprise-Resource-Planning-System-JavaSwing",
-            stargazers_count: 0,
-            forks_count: 2,
+              "https://github.com/Eaglemann/Schema-Sense-CSVtoSQL",
+            stargazers_count: 1,
+            forks_count: 0,
             watchers_count: 0,
-            language: "Java",
+            language: "Python",
             updated_at: "2024-01-15T00:00:00Z",
           },
         ];
